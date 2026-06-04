@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://images.alphacoders.com/605/605593.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+/* ეკრანის შერყევა კრიტიკული დარტყმებისას */
+.shake { animation: shakeAnim 0.3s ease-in-out; }
+@keyframes shakeAnim {
+    0%, 100% { transform: translate(0, 0); }
+    20%, 60% { transform: translate(-12px, 6px); }
+    40%, 80% { transform: translate(12px, -6px); }
+}
+
+h1 {
+    color: #fff;
+    text-shadow: 0 0 10px #ff9f43, 0 0 25px #ff9f43;
+    margin: 0 0 10px 0;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+#ui-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    z-index: 100;
+    width: 620px;
+}
+
+.panel {
+    background-color: rgba(10, 10, 20, 0.92);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 2px solid #ff9f43;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.8);
+    text-align: center;
+}
+
+#turn-indicator { font-size: 18px; font-weight: bold; }
+#combat-log { font-size: 13px; color: #0abde3; margin-top: 4px; height: 32px; font-weight: 500; }
+
+#stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    margin-top: 8px;
+    text-align: left;
+}
+
+#squad-panel {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.unit-btn {
+    background: #222;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 6px 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: 0.2s;
+}
+.unit-btn.active {
+    background: #ff9f43;
+    color: #000;
+    border-color: #fff;
+    font-weight: bold;
+}
+
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(12, 50px);
+    grid-template-rows: repeat(12, 50px);
+    gap: 2px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 4px solid #fff;
+    box-shadow: 0 0 35px rgba(0,0,0,0.9);
+    border-radius: 8px;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.obstacle {
+    background-image: url('https://cdn-icons-png.flaticon.com/512/489/489969.png');
+    background-size: 65%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(34, 112, 44, 0.35) !important;
+}
+
+.walkable { background-color: rgba(72, 219, 251, 0.4) !important; cursor: pointer; }
+.walkable:hover { background-color: rgba(72, 219, 251, 0.7) !important; }
+
+.attackable { background-color: rgba(255, 107, 107, 0.5) !important; cursor: crosshair; }
+.attackable:hover { background-color: rgba(255, 107, 107, 0.8) !important; }
+
+.character {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: white;
+    font-size: 11px;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+    user-select: none;
+}
+
+.player-unit { border: 2px solid #00d2d3; cursor: pointer; }
+.player-unit.selected { border-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
+.enemy-unit { background: linear-gradient(135deg, #ff6b6b, #ee5253); border: 2px solid #ff2222; }
+
+.class-warrior { background: linear-gradient(135deg, #2e86de, #1a5276); }
+.class-archer { background: linear-gradient(135deg, #10ac84, #0b6623); }
+.class-mage { background: linear-gradient(135deg, #9b59b6, #6c3483); }
+
+.damaged { background: #fff !important; color: #000 !important; transition: 0.1s; }
+
+.hp-bar {
+    position: absolute;
+    top: -6px;
+    left: 2px;
+    width: 38px;
+    height: 5px;
+    background-color: #ff6b6b;
+    border-radius: 3px;
+    overflow: hidden;
+}
+.hp-fill { height: 100%; background-color: #1dd1a1; transition: width 0.2s; }
+
+.lvl-badge {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    background: #ff9f43;
+    color: black;
+    font-size: 8px;
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-weight: bold;
+}
